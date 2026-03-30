@@ -55,6 +55,27 @@
       max-height: 100%;
       object-fit: contain;
     }
+    .datetime-header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(100, 80, 160, 0.6);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      text-align: center;
+      z-index: 12;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .back-arrow {
+      cursor: pointer;
+      font-size: 24px;
+    }
   </style>
 </head>
 <body>
@@ -64,15 +85,39 @@
       <a href="#" onclick="showNewSection()" style="position:absolute;top:13%;left:5%;width:90%;height:13%;z-index:2;display:block;cursor:pointer;"></a>
     </div>
     <div id="new-section" class="new-section">
+      <div class="datetime-header">
+        <span class="back-arrow" onclick="hideNewSection()">←</span>
+        <span id="datetime-display">18-03-2026 | 18:25:57</span>
+        <span style="width:24px;"></span>
+      </div>
       <div style="position:relative;width:100%;max-width:430px;display:flex;justify-content:center;align-items:center;">
         <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/New%20Project.jpg" alt="New Image" style="width:100%;height:auto;object-fit:contain;" />
-        <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/ezgif-265157ddb9ad46c2.gif" alt="Overlay GIF" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70%;height:auto;object-fit:contain;z-index:11;" />
+        <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/ezgif-265157ddb9ad46c2.gif" alt="Overlay GIF" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:19%;height:auto;object-fit:contain;z-index:11;" />
       </div>
     </div>
   </div>
   <script>
     function showNewSection() {
       document.getElementById('new-section').classList.add('show');
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    }
+    
+    function hideNewSection() {
+      document.getElementById('new-section').classList.remove('show');
+    }
+    
+    function updateDateTime() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const dateTimeString = `${day}-${month}-${year} | ${hours}:${minutes}:${seconds}`;
+      document.getElementById('datetime-display').textContent = dateTimeString;
     }
   </script>
 </body>
