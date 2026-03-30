@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nástěnka - Mobilní Zobrazení</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #18103a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100vw;
+      max-width: 430px;
+      box-sizing: border-box;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      display: block;
+    }
+    .new-section {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #18103a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.5s ease-in-out;
+      z-index: 10;
+    }
+    .new-section.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="position:relative;width:100%;max-width:400px;margin:auto;">
+      <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/IMG_0905.png" alt="Nástěnka aplikace" style="width:100%;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.2);display:block;" />
+      <a href="#" onclick="showNewSection()" style="position:absolute;top:13%;left:5%;width:90%;height:13%;z-index:2;display:block;cursor:pointer;"></a>
+    </div>
+    <div id="new-section" class="new-section">
+      <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/New%20Project.jpg" alt="New Image" style="width:100%;height:100%;object-fit:contain;" />
+      <img src="https://raw.githubusercontent.com/viktoriroyale/hostovanifotekaostatnichveci/refs/heads/main/ezgif-265157ddb9ad46c2.gif" alt="Overlay GIF" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:19%;height:auto;object-fit:contain;z-index:11;" />
+    </div>
+  </div>
+  <script>
+    function showNewSection() {
+      document.getElementById('new-section').classList.add('show');
+    }
+  </script>
+</body>
+</html>
